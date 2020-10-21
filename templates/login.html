@@ -8,6 +8,9 @@
 <table>
 <form action="/login" method="POST"> 
     <form name="form" action="/join" method="POST">
+        {% if next_url %}
+            <input type="hidden" name="next_url" value="{{next_url}}">
+        {% endif %}
         <thead>
             <caption>회원 로그인</caption>
         </thead>
