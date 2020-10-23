@@ -1,6 +1,9 @@
 from main import *
+from flask import Blueprint
 
-@app.route("/join", methods=["GET", "POST"])   
+blueprint = Blueprint("member", __name__, url_prefix="/member")
+
+@blueprint.route("/join", methods=["GET", "POST"])   
 def member_join():
     if request.method == "POST":
         name = request.form.get("name", type=str)
@@ -37,7 +40,7 @@ def member_join():
     else:
         return render_template("join.html")
 
-@app.route("/login", methods=["GET", "POST"])
+@blueprint.route("/login", methods=["GET", "POST"])
 def member_login():
     if request.method == "POST":
         email = request.form.get("email")
@@ -49,7 +52,7 @@ def member_login():
 
         if data is None:
             flash("회원 정보가 없습니다.")
-            return redirect(url_for("member_login"))
+            return redirect(url_for("member.member_login"))
 
         else:
             if data.get("pass") == password:
@@ -60,11 +63,11 @@ def member_login():
                 if next_url is not None:
                     return redirect(next_url)
                 else:
-                    return redirect(url_for("lists"))
+                    return redirect(url_for("board.lists"))
 
             else:
                 flash("회원 정보가 없습니다2.")
-                return redirect(url_for("member_login"))
+                return redirect(url_for("member.member_login"))
 
         return ""
     else:
