@@ -2,18 +2,18 @@
 
 {% block contents %}
 <table>
-    <form action="write" method="POST">
+    <form action="/edit/{{data._id}}" method="POST">
     <tr>
         <td>작성자</td>
         <td><input type="text" name="name" value="{{session['name']}}" readonly></td>
     </tr>
     <tr>
         <td>제목</td>
-        <td><input type="text" name="title"></td>
+        <td><input type="text" name="{{data.title}}"></td>
     </tr>
     <tr>
         <td>내용</td>
-        <td><input type="text" name="contents"></td>
+        <td><input type="text" name="{{data.contents}}"></td>
     </tr>
         
     <tr>
