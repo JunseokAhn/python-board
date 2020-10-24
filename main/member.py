@@ -36,9 +36,9 @@ def member_join():
         }
 
         members.insert_one(post)
-        return ""
+        return render_template("login.html", title="로그인")
     else:
-        return render_template("join.html", title="로그인")
+        return render_template("join.html", title="회원가입")
 
 @blueprint.route("/login", methods=["GET", "POST"])
 def member_login():

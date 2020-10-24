@@ -1,29 +1,46 @@
 {% extends "main.html" %}
 
 {% block contents %}
+<script>
+    function checkForm(){
+        if($.trim($("input[name=email").val()) == ""){
+            alert("이메일을 입력하세요.");
+            $("input[name=email").focus();
+            return false;
+        }
+        if($.trim($("#pass").val()) == ""){
+            alert("비밀번호를 입력하세요.");
+            return false;
+        }
+
+        if(!validateEmail($.trim($("input[name=email").val()))){
+            alert("이메일이 유효하지않습니다.")
+            return false;
+        }
+        return true;
+    }
+</script>
 <table>
-<form action="/login" method="POST"> 
-    <form name="form" action="/join" method="POST">
-        {% if next_url %}
-            <input type="hidden" name="next_url" value="{{next_url}}">
-        {% endif %}
-        <thead>
-            <caption>회원 로그인</caption>
-        </thead>
-        <tbody>
-            <tr>
-                <td>이메일</td>
-                <td><input type="text" name="email"></td>
-            </tr>
-            <tr>
-                <td>비밀번호</td>
-                <td><input type="text" name="pass"></td>
-            </tr>
-            <tr>
-                <td colspan="2"><input type="submit" value="로그인"></td>
-            </tr>
-        </tbody>
-    </form>
+<form action="login" method="POST" onsubmit="return checkForm()">
+    {% if next_url %}
+        <input type="hidden" name="next_url" value="{{next_url}}">
+    {% endif %}
+    <thead>
+        <caption>회원 로그인</caption>
+    </thead>
+    <tbody>
+        <tr>
+            <td>이메일</td>
+            <td><input type="text" name="email" id="email"></td>
+        </tr>
+        <tr>
+            <td>비밀번호</td>
+            <td><input type="text" name="pass" id="pass"></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="로그인"></td>
+        </tr>
+    </tbody>
 </form>
 
 </table>

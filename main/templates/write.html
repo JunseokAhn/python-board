@@ -1,6 +1,21 @@
 {% extends "main.html" %}
 
 {% block contents %}
+<script>
+    $(document).ready(function(){
+        $("#summernote").summernote({
+            height: 300,
+            minHeight: null,
+            maxHeight: null,
+            lang: "ko-KR",
+            popover: {
+                image: [],
+                link: [],
+                air: []
+            }
+        });
+    })
+</script>
 <table>
     <form action="write" method="POST">
     <tr>
@@ -13,7 +28,7 @@
     </tr>
     <tr>
         <td>내용</td>
-        <td><input type="text" name="contents"></td>
+        <td><input type="text" id="summernote" name="contents"></td>
     </tr>
         
     <tr>
